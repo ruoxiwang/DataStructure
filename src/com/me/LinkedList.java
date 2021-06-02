@@ -34,6 +34,8 @@ public class LinkedList<E> extends AbstractList<E> {
 
     @Override
     public void add(int index, E element) {
+        rangeCheckForAdd(index);
+
         if (index == 0) {
             first = new Node<E>(element, first);
         } else {
@@ -45,6 +47,7 @@ public class LinkedList<E> extends AbstractList<E> {
 
     @Override
     public E remove(int index) {
+        rangeCheck(index);
 
         Node<E> node = first;
         if (index == 0) {
