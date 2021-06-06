@@ -1,29 +1,17 @@
 package com.me;
 
-public class Stack<E> {
+public class Stack<E> extends ArrayList<E>{
     private int size;
 
-    public Stack(int size) {
-        this.size = size;
+    public void push(int element) {
+        add(element);
     }
 
-    public int size() {
-        return size;
+    public int pop() {
+        return remove(size-1);
     }
 
-    public boolean isEmpty() {
-        return size==0;
-    }
-
-    public void push(E element) {
-
-    }
-
-    public E pop() {
-
-    }
-
-    public E top() {
-
+    public int top() {
+        return get(size-1);
     }
 }

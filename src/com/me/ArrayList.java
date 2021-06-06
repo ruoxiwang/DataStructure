@@ -1,6 +1,10 @@
+package com.me;
+
+import com.me.LinkedList;
+
 import java.util.Arrays;
 
-public class ArrayList {
+public class ArrayList<E> {
     private int size;
     private int[] elements;
     public static final int DEFAULT_CAPACITY = 10;
@@ -8,8 +12,7 @@ public class ArrayList {
 
     public ArrayList(int capacity) {
         capacity = (capacity < DEFAULT_CAPACITY) ? DEFAULT_CAPACITY : capacity;
-        elements = new int [capacity];
-
+        elements = new int[capacity];
     }
 
     public ArrayList() {
@@ -61,9 +64,14 @@ public class ArrayList {
         }
         int old = elements[index];
         for (int i = index; i < size; i++) {
-            elements[i] = elements[i+1]
+            elements[i] = elements[i+1];
         }
         return old;
+    }
+
+    public void add(int element) {
+        elements[size] = element;
+        size++;
     }
 
     @Override
