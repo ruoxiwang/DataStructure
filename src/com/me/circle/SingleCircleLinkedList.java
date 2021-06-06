@@ -1,6 +1,8 @@
-package com.me;
+package com.me.circle;
 
-public class LinkedList<E> extends AbstractList<E> {
+import com.me.AbstractList;
+
+public class SingleCircleLinkedList<E> extends AbstractList<E> {
     private Node<E> first;
 
     private static class Node<E>{
@@ -17,7 +19,6 @@ public class LinkedList<E> extends AbstractList<E> {
         size = 0;
         first = null;
     }
-
 
     @Override
     public E get(int index) {
@@ -38,6 +39,8 @@ public class LinkedList<E> extends AbstractList<E> {
 
         if (index == 0) {
             first = new Node<E>(element, first);
+            Node<E> last = (size == 0) ? first : node(size - 1);
+            last.next = first;
         } else {
             Node<E> prev = node(index - 1);
             prev.next = new Node<E>(element, prev.next);
@@ -51,7 +54,13 @@ public class LinkedList<E> extends AbstractList<E> {
 
         Node<E> node = first;
         if (index == 0) {
-            first = node.next;
+            if (size == 1) {
+                first = null;
+            } else {
+                Node<E> last = node(size - 1);
+                first = node.next;
+                last.next = first;
+            }
         } else {
             Node<E> prev = node(index-1);
             node = prev.next;
@@ -63,13 +72,12 @@ public class LinkedList<E> extends AbstractList<E> {
 
     @Override
     public int indexOf(E element) {
+        Node<E> node = first;
         if (element == null) {
-            Node<E> node = first;
             for (int i = 0; i < size; i++) {
                 if (node.element == null) return i;
             }
         } else {
-            Node<E> node = first;
             for (int i = 0; i < size; i++) {
                 if (element.equals(node.element)) return i;
                 node = node.next;

@@ -13,6 +13,24 @@ public class DoubleLinkedList<E> extends AbstractList<E> {
             this.element = element;
             this.next = next;
         }
+
+        @Override
+        public String toString() {
+            StringBuilder string = new StringBuilder();
+            if (prev != null) {
+                string.append(prev.element);
+            } else {
+                string.append("null");
+            }
+            string.append("_").append(element).append("_");
+            if (next != null) {
+                string.append(next.element);
+            } else {
+                string.append("null");
+            }
+            return string.toString();
+        }
+
     }
 
     @Override
@@ -52,13 +70,20 @@ public class DoubleLinkedList<E> extends AbstractList<E> {
     public E remove(int index) {
         rangeCheck(index);
 
-        Node<E> node = first;
-        if (index == 0) {
-            first = node.next;
+        Node<E> node = node(index);
+        Node<E> prev = node.prev;
+        Node<E> next = node.next;
+
+        if (prev == null) {
+            first = next;
         } else {
-            Node<E> prev = node(index-1);
-            node = prev.next;
-            prev.next = node.next;
+            prev.next = next;
+        }
+
+        if (next == null) {
+            last = prev;
+        } else {
+            next.prev = prev;
         }
         size --;
         return node.element;
