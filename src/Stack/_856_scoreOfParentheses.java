@@ -6,7 +6,8 @@ public class _856_scoreOfParentheses {
     int scoreOfParentheses(String s) {
         int result = 0;
         Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i < s.length(); i++) {
+        int sLen = s.length();
+        for (int i = 0; i < sLen; i++) {
             char c = s.charAt(i);
             if (c == '(') {
                 stack.push(result);
