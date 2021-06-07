@@ -1,3 +1,3 @@
 # DataStructure
-Learning Data Structure \n
+Learning Data Structure <br>
 LeetCode Solutions
