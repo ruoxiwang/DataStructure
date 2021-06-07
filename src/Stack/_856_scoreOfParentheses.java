@@ -18,4 +18,23 @@ public class _856_scoreOfParentheses {
         }
         return result;
     }
+
+    int scoreOfParentheses2(String s) {
+        int result = 0, sLen = s.length();
+        for (int i = 0; i < sLen; ++i) {
+            if (s.charAt(i) == ')') continue;;
+            int pos = i+1, count = 1;
+            while (count != 0) {
+                if ((s.charAt(pos++) == '(')) {
+                    ++count;
+                } else {
+                    --count;
+                }
+            }
+            int cur = scoreOfParentheses(s.substring(i + 1, pos - i - 2));
+            result += Math.max(2 * cur, 1);
+            i = pos - 1;
+        }
+        return result;
+    }
 }
